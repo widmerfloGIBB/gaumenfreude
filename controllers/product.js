@@ -17,6 +17,22 @@ let ProductController = {
     findById: async (req, res) => {
         let found = await ProductModel.findById(req.params.id);
         res.json(found);
+    },
+    update: async (req, res) => {
+        try {
+            let updatedProduct = await ProductModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
+            res.json(updatedProduct);
+        } catch (error) {
+            res.status(400).json({ message: error.message });
+        }
+    },
+    delete: async (req, res) => {
+        try {
+            let deletedProduct = await ProductModel.findByIdAndDelete(req.params.id);
+            res.json({ message: 'Product deleted', product: deletedProduct });
+        } catch (error) {
+            res.status(500).json({ message: error.message });
+        }
     }
 }
 

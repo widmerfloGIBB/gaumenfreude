@@ -21,6 +21,8 @@ app.use(cors());
 const SupplierControls = require("./controllers/supplier");
 app.get("/suppliers", SupplierControls.all);
 app.get("/suppliers/create", SupplierControls.create);
+app.get("/suppliers/update/:id", SupplierControls.update)
+app.get("/suppliers/delete/:id", SupplierControls.delete)
 app.get("/suppliers/id/:id", SupplierControls.findById);
 app.get("/suppliers/:name", SupplierControls.find);
 app.get("/suppliers/:name/products", SupplierControls.getAllProducts);
@@ -28,6 +30,8 @@ app.get("/suppliers/:name/products", SupplierControls.getAllProducts);
 const ProductControls = require("./controllers/product");
 app.get("/products", ProductControls.all);
 app.get("/products/create", ProductControls.create);
+app.get("/products/update/:id", ProductControls.update)
+app.get("/products/delete/:id", ProductControls.delete)
 app.get("/products/id/:id", ProductControls.findById);
 app.get("/products/:name", ProductControls.find);
 

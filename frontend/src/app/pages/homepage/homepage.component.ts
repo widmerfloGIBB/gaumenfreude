@@ -18,13 +18,14 @@ import {JsonPipe, NgIf} from "@angular/common";
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.scss'
 })
-export class HomepageComponent {
+export class HomepageComponent implements OnInit{
   products: Product[] = []
   data: any;
   supplierById:any;
   supplierByName:any;
   productById:any;
   productByName:any;
+  inputValue: string = '';
   constructor( private product : ProductService,private supplier:SupplierService) {}
   ngOnInit() {
     this.supplier.getAllSuppliers().subscribe((response) => {

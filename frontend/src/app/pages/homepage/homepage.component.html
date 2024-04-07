@@ -4,4 +4,7 @@
   <div *ngIf="data">
     {{ data | json }}
   </div>
+  @for (product of products; track product.id) {
+    <p>{{product.name}}</p>
+  }
 </div>

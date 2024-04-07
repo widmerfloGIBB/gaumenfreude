@@ -1,28 +1,73 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {HeaderComponent} from "../../components/header/header.component";
 import {ProductService} from "../../services/product.service";
 import {Product} from "../../models/product";
+import {SupplierService} from "../../services/supplier.service";
+import {JsonPipe, NgIf} from "@angular/common";
+
+
 
 @Component({
   selector: 'app-homepage',
   standalone: true,
   imports: [
-    HeaderComponent
+    HeaderComponent,
+    JsonPipe,
+    NgIf
   ],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.scss'
 })
 export class HomepageComponent {
   products: Product[] = []
+  data: any;
+  supplierById:any;
+  supplierByName:any;
+  productById:any;
+  productByName:any;
+  constructor( private product : ProductService,private supplier:SupplierService) {}
+  ngOnInit() {
+    this.supplier.getAllSuppliers().subscribe((response) => {
+      this.data = response;
+    });
 
-  constructor( private productService : ProductService) {
-    productService.getProducts().subscribe((res) => {
-      this.products = res;
-      console.log(res)
+    this.product.getAllProducts().subscribe((response)=>{
+      this.products = response
     })
   }
 
-  getData() {
-    return this.http.get<any>('');
+  CreateSupplier() {
+    this.supplier.createSuppliers().subscribe()
   }
+
+  CreateProduct(){
+    this.product.createProduct().subscribe()
+  }
+
+  findProductById(){
+    this.product.getProductById().subscribe((response)=>{
+      this.productById = response;
+    })
+  }
+
+  findProductByName(){
+    this.product.getProductbyName().subscribe((response)=>{
+      this.productByName = response;
+    })
+  }
+
+  findSupplierById(){
+    this.supplier.findSupplierById().subscribe((response)=>{
+      this.supplierById= response;
+    })
+  }
+
+  findSupplierByName() {
+    this.supplier.findSupplierByName().subscribe((response)=>{
+      this.supplierByName = response;
+    })
+  }
+
+
+
 }

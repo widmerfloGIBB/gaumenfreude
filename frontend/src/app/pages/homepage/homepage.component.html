@@ -1,4 +1,7 @@
 <app-header></app-header>
 <div class="content">
   <p>jamie isch eh dumme</p>
+  <div *ngIf="data">
+    {{ data | json }}
+  </div>
 </div>

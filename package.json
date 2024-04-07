@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@angular/common": "^17.3.3",
+    "@angular/core": "^17.3.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "mongoose": "^5.5.7"

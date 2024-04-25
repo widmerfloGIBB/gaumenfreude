@@ -1,29 +1,23 @@
 <app-header></app-header>
-<div class="content">
-  <p>jamie isch eh dumme</p>
-  <div *ngIf="data">
-    {{ data | json }}
-  </div>
-  @for (product of products; track product.id) {
-    <p>{{product.name}}</p>
+<h1 style="margin: 30px 30px 0 30px">Produkte</h1>
+<div style="display: flex; padding: 30px" class="flex-wrap">
+  @for (product of products; track product._id) {
+    <div style="margin: 10px 40px; padding: 10px; border: solid; width: 400px">
+      <h5 class="card-title" style="margin: 0;">{{product.name}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted" style="margin: 0;">{{product.price}} CHF</h6>
+      <p class="card-text">{{product.description}}</p>
+      <a [routerLink]="['/detail/' + product._id]" class="card-link">Details</a>
+    </div>
   }
 </div>
-<h1>Create</h1>
-<div>
-  <h2>Create Product:</h2>
-  <input type="text" placeholder="name">
-  <input type="text" placeholder="description">
-  <input type="number" placeholder="price">
-  <input type="text" placeholder="amount">
-  <button>Submit</button>
+<h1 style="margin: 30px 30px 0 30px">Lieferanten</h1>
+<div style="display: flex; padding: 30px" class="flex-wrap">
+  @for (supplier of suppliers; track supplier._id) {
+    <div style="margin: 10px 40px; padding: 10px; border: solid; width: 400px">
+      <h5 class="card-title" style="margin: 0;">{{supplier.name}}</h5>
+      <p class="card-text">{{supplier.manager}}</p>
+      <p class="card-text">{{supplier.address}}</p>
+      <a [routerLink]="['/supplier-detail/' + supplier._id]" class="card-link">Details</a>
+    </div>
+  }
 </div>
-<div>
-  <h2>Create Supplier:</h2>
-  <input type="text" placeholder="name">
-  <input type="email" placeholder="email">
-  <input type="text" placeholder="address">
-  <input type="text" placeholder="manager">
-  <button>Submit</button>
-</div>
-
-

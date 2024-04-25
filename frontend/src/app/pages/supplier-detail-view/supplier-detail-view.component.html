@@ -1,0 +1,22 @@
+<app-header></app-header>
+<div style="padding: 30px">
+  <h1>Lieferant</h1>
+  <p><strong>Lieferant Id:</strong>   {{ supplier._id }}</p>
+  <p><strong>Lieferant:</strong>   {{ supplier.name }}</p>
+  <p><strong>Manager:</strong>   {{ supplier.manager }}</p>
+  <p><strong>Email:</strong>   {{ supplier.email }}</p>
+  <p><strong>Adresse:</strong>   {{ supplier.address }}</p>
+  <a [routerLink]="'/supplier-edit/' + supplier._id">Lieferant bearbeiten</a>
+  <a routerLink="/" style="color: red; margin-left: 5px" (click)="deleteSupplier()">Lieferant löschen</a>
+</div>
+<h1 style="margin: 30px 30px 0 30px">Produkte</h1>
+<div style="display: flex; padding: 30px" class="flex-wrap">
+  @for (product of products; track product._id) {
+    <div style="margin: 10px 40px; padding: 10px; border: solid; width: 400px">
+      <h5 class="card-title" style="margin: 0;">{{ product.name }}</h5>
+      <h6 class="card-subtitle mb-2 text-muted" style="margin: 0;">{{ product.price }} CHF</h6>
+      <p class="card-text">{{ product.description }}</p>
+      <a [routerLink]="['/detail/' + product._id]" class="card-link">Details</a>
+    </div>
+  }
+</div>

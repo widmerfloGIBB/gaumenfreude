@@ -1,5 +1,4 @@
 let SupplierModel = require("../models/supplier");
-const ProductModel = require("../models/product");
 
 let SupplierController = {
     find: async (req, res) => {
@@ -11,7 +10,7 @@ let SupplierController = {
         res.json(allSuppliers);
     },
     create: async  (req, res) => {
-        let newSupplier = new SupplierModel(req.body);
+        let newSupplier = new SupplierModel(req.query);
         let savedSupplier = await newSupplier.save();
         res.json(savedSupplier);
     },
@@ -25,7 +24,7 @@ let SupplierController = {
     },
     update: async (req, res) => {
         try {
-            let updatedProduct = await ProductModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
+            let updatedProduct = await SupplierModel.findByIdAndUpdate(req.params.id, req.query, { new: true });
             res.json(updatedProduct);
         } catch (error) {
             res.status(400).json({ message: error.message });
@@ -33,7 +32,7 @@ let SupplierController = {
     },
     delete: async (req, res) => {
         try {
-            let deletedProduct = await ProductModel.findByIdAndDelete(req.params.id);
+            let deletedProduct = await SupplierModel.findByIdAndDelete(req.params.id);
             res.json({ message: 'Product deleted', product: deletedProduct });
         } catch (error) {
             res.status(500).json({ message: error.message });

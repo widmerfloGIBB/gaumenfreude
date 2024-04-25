@@ -4,6 +4,7 @@ import {ProductService} from "../../services/product.service";
 import {Product} from "../../models/product";
 import {SupplierService} from "../../services/supplier.service";
 import {JsonPipe, NgIf} from "@angular/common";
+import {RouterLink} from "@angular/router";
 
 
 
@@ -13,14 +14,15 @@ import {JsonPipe, NgIf} from "@angular/common";
   imports: [
     HeaderComponent,
     JsonPipe,
-    NgIf
+    NgIf,
+    RouterLink
   ],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.scss'
 })
 export class HomepageComponent implements OnInit{
   products: Product[] = []
-  data: any;
+  suppliers: any;
   supplierById:any;
   supplierByName:any;
   productById:any;
@@ -29,24 +31,18 @@ export class HomepageComponent implements OnInit{
   constructor( private product : ProductService,private supplier:SupplierService) {}
   ngOnInit() {
     this.supplier.getAllSuppliers().subscribe((response) => {
-      this.data = response;
+      this.suppliers = response;
     });
 
     this.product.getAllProducts().subscribe((response)=>{
+      console.log(response)
       this.products = response
     })
   }
 
-  CreateSupplier() {
-    this.supplier.createSuppliers().subscribe()
-  }
-
-  CreateProduct(){
-    this.product.createProduct().subscribe()
-  }
 
   findProductById(){
-    this.product.getProductById().subscribe((response)=>{
+    this.product.getProductById("").subscribe((response)=>{
       this.productById = response;
     })
   }
@@ -58,7 +54,7 @@ export class HomepageComponent implements OnInit{
   }
 
   findSupplierById(){
-    this.supplier.findSupplierById().subscribe((response)=>{
+    this.supplier.getSupplierById("").subscribe((response)=>{
       this.supplierById= response;
     })
   }

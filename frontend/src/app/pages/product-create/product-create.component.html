@@ -1,0 +1,37 @@
+<app-header></app-header>
+<div style="padding: 30px 50px">
+  <h1 style="font-size: 50px; margin: 0;">Product hinzufügen</h1>
+  <form>
+    <div class="form-group">
+      <label for="inputName">Produkt Name</label>
+      <input type="text" class="form-control" id="inputName" placeholder="Name" (change)="nameChanged($event)">
+    </div>
+    <div class="form-group">
+      <label for="inputDescription">Beschreibung</label>
+      <input type="text" class="form-control" id="inputDescription" placeholder="Beschreibung" (change)="descriptionChanged($event)">
+    </div>
+    <div class="form-group">
+      <label for="inputPrice">Preis</label>
+      <input type="number" class="form-control" id="inputPrice" placeholder="Preis" (change)="priceChanged($event)">
+    </div>
+    <div class="form-group">
+      <label for="inputAmount">Lagerbestand</label>
+      <input type="number" class="form-control" id="inputAmount" placeholder="Lagerbestand" (change)="amountChanged($event)">
+    </div>
+    <div class="form-group">
+      <label for="inputSupplier">Lieferant Id</label>
+      <input type="text" class="form-control" id="inputSupplier" placeholder="Lieferant Id" [value]="product.supplier" (change)="supplierChanged($event)">
+      <small id="supplier-help" class="form-text text-muted">Bitte kopiere die Id des Suppliers um Fehler zu vermeiden.</small>
+    </div>
+    <!--    <div class="form-group">-->
+    <!--      <label for="inputSupplier">Lieferant</label>-->
+    <!--      <select class="form-control" id="inputSupplier">-->
+    <!--        <option>{{supplier.name}}</option>-->
+    <!--        @for (supplier of suppliers; track supplier._id) {-->
+    <!--          <option>{{supplier.name}}</option>-->
+    <!--        }-->
+    <!--      </select>-->
+    <!--    </div>-->
+    <button type="submit" class="btn btn-primary" (click)="createProduct()" routerLink="/">Erstellen</button>
+  </form>
+</div>

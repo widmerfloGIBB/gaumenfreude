@@ -1,10 +1,8 @@
-import {Product} from "./product";
-
 export interface Supplier {
-  id: number,
+  _id: string,
   name: string,
   email: string,
   address: string,
   manager: string,
-  products: Product[]
+  products: []
 }

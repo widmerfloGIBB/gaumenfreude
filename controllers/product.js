@@ -10,7 +10,7 @@ let ProductController = {
         res.json(allProducts);
     },
     create: async (req, res) => {
-        let newProduct = new ProductModel(req.body);
+        let newProduct = new ProductModel(req.query);
         let savedProduct = await newProduct.save();
         res.json(savedProduct);
     },
@@ -20,7 +20,7 @@ let ProductController = {
     },
     update: async (req, res) => {
         try {
-            let updatedProduct = await ProductModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
+            let updatedProduct = await ProductModel.findByIdAndUpdate(req.params.id, req.query, { new: true });
             res.json(updatedProduct);
         } catch (error) {
             res.status(400).json({ message: error.message });

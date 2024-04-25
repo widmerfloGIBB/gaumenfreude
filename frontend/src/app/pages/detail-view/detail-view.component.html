@@ -1,0 +1,18 @@
+<app-header></app-header>
+<div style="padding: 30px 50px">
+  <h1 style="font-size: 50px; margin: 0;">Detail View</h1>
+  <p><strong>Produkt Id:</strong>   {{product._id}}</p>
+  <p><strong>Name:</strong>   {{product.name}}</p>
+  <p><strong>Beschreibung:</strong>   {{product.description}}</p>
+  <p><strong>Preis in CHF:</strong>   {{product.price}}</p>
+  <p><strong>Lagerbestand:</strong>   {{product.amount}}</p>
+  <a [routerLink]="'/product-edit/' + product._id">Produkt bearbeiten</a>
+  <a routerLink="/" style="color: red; margin-left: 5px" (click)="deleteProduct()">Produkt löschen</a>
+  <p>-----------------------------------------------------</p>
+  <p><strong>Lieferant Id:</strong>   {{supplier._id}}</p>
+  <p><strong>Lieferant:</strong>   {{supplier.name}}</p>
+  <p><strong>Manager:</strong>   {{supplier.manager}}</p>
+  <p><strong>Email:</strong>   {{supplier.email}}</p>
+  <p><strong>Adresse:</strong>   {{supplier.address}}</p>
+  <a [routerLink]="'/supplier-detail/' + product.supplier">Lieferant begutachten</a>
+</div>
